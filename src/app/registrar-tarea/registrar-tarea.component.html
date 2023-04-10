@@ -1,0 +1,71 @@
+<div class="col-md-6 offset-md-3">
+  <h3 class="text-center">Registro de tarea</h3>
+  <form (ngSubmit)= "onSubmit()" #tareaForm = "ngForm">
+    <div class="form-group">
+      <label>Nombre : </label>
+      <input type = "text"
+      class="form-control"
+      id = "nombre"
+      [(ngModel)] = "tarea.nombre"
+      name = "nombre"
+      required
+      minlength="4"
+      maxlength="10"
+      placeholder="Escribe tu nombre "
+      #nombre = "ngModel"
+      >
+      <div class="alert alert-danger" *ngIf= "nombre.invalid && (nombre.dirty || nombre.touched)">
+        <div *ngIf = "nombre.errors.required">
+          Escriba su nombre por favor
+        </div>
+        <div *ngIf = "nombre.errors.minlength">
+          El nombre tiene que contener como minimo 4 caracteres
+        </div>
+        <div *ngIf = "nombre.errors.maxlength">
+          El nombre tiene que tener como maximo 10 caracteres
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Asignado : </label>
+      <input type = "text"
+      class="form-control"
+      id = "asignado"
+      [(ngModel)] = "tarea.asignado"
+      name = "asignado"
+      placeholder="Escribe a quien está asignada "
+      #asignado = "ngModel"
+      >
+      <!-- <div class="alert alert-danger" *ngIf= "asignado.invalid && (asignado.dirty || asignado.touched)">
+        <div *ngIf = "asignado.errors.required">
+          Escriba a quien esta asignada
+        </div>
+        <div *ngIf = "asignado.errors.minlength">
+          El usuario asignado tiene que contener como minimo 4 caracteres
+        </div>
+        <div *ngIf = "asignado.errors.maxlength">
+          El usuario asignado tiene que tener como maximo 10 caracteres
+        </div>
+      </div> -->
+    </div>
+    <div class="form-group">
+      <label>Descripcion : </label>
+      <input type = "text"
+      class="form-control"
+      id = "descripcion"
+      [(ngModel)] = "tarea.descripcion"
+      name = "descripcion"
+      placeholder="Escriba la descripcion "
+      #descripcion = "ngModel"
+      >
+      <!-- <div class="alert alert-danger" *ngIf= "descripcion.invalid && (descripcion.dirty || descripcion.touched)">
+        <div *ngIf = "descripcion.errors.required">
+          Esriba la descripcion por favor
+        </div>
+      </div> -->
+    </div>
+
+    <button class="btn btn-success" [disabled]= "!tareaForm.form.valid">Guardar</button>
+  </form>
+</div>

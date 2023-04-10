@@ -1,0 +1,35 @@
+<h2>Lista tareas</h2>
+<div>
+  <button (click)="mostrarTodasTareas()">Mostrar todas</button>
+  <button (click)="filtrarRealizadas()">Mostrar realizadas</button>
+  <button (click)="filtrarNoRealizadas()">Mostrar no realizadas</button>
+</div>
+<th></th>
+<table class="table table-striped">
+  <thead class="table-dark">
+    <tr>
+      <th>Nombre</th>
+      <th>Asignado</th>
+      <th>Descripcion</th>
+      <th>Acciones</th>
+      <th>Realizada</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor= "let tarea of tareasFiltradas | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }">
+      <td>{{tarea.nombre}}</td>
+      <td>{{tarea.asignado}}</td>
+      <td>{{tarea.descripcion}}</td>
+      <td>
+        <button (click)= "actualizarTarea(tarea.id)" class="btn btn-info">Editar</button>
+        <button (click)= "eliminarTarea(tarea.id)" class="btn btn-danger" style="margin-left : 10px;">Eliminar</button>
+        <button (click)= "verDetallesDelTarea(tarea.id)" class="btn btn-primary" style="margin-left : 10px;">Detalles</button>
+      </td>
+      <td [ngClass]="{ 'text-success': tarea.realizada, 'text-danger': !tarea.realizada }">
+        {{ tarea.realizada ? '✔' : '✘' }}
+      </td>
+    </tr>
+    <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+  </tbody>
+  
+</table>

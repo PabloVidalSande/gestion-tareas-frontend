@@ -1,0 +1,22 @@
+<h3>Detalles de la tarea</h3>
+<div>
+  <div>
+    <label><b>ID : </b> {{ tarea.id }}</label>
+  </div>
+  <div>
+    <label><b>Nombre : </b> {{ tarea.nombre }}</label>
+  </div>
+  <div>
+    <label><b>Asignado : </b> {{ tarea.asignado }}</label>
+  </div>
+  <div>
+    <label><b>Descripcion : </b> {{ tarea.descripcion }}</label>
+  </div>
+  <div>
+    <label><b>Tarea realizada:</b></label>
+    <span *ngIf="tarea.realizada; else noRealizada" class="realizada">Realizada</span>
+    <ng-template #noRealizada>
+      <span class="no-realizada">Todavía por realizar</span>
+    </ng-template>
+  </div>
+</div>
